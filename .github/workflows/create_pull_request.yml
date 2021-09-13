@@ -1,0 +1,23 @@
+name: Create PR staging to master
+
+on:
+  pull_request:
+  push:
+    branches:
+      - staging
+      - master
+
+jobs:
+  create_release_pr:
+    if: (github.ref == 'refs/heads/staging')
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Create release pr if does not exist
+        if: github.ref == 'refs/heads/staging'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh pr list --label "Production Release" | grep "staging" || gh pr create --base master --title "Production Release $(date '+%Y-%m-%d' --date 'next monday')" --body "" --label "Production Release"
