@@ -8,15 +8,16 @@ on:
 
 jobs:
   build:
-    if: (github.ref == 'refs/heads/staging')
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
     - name: Get Time
+      if: (github.ref == 'refs/heads/staging')
       run:
         echo "OUTPUT=v$(date "+%Y%m%d%H%M%S")" >> $GITHUB_ENV
     - name: Create a Release
+      if: (github.ref == 'refs/heads/staging')
       id: create_release
       uses: actions/create-release@v1
       env:
