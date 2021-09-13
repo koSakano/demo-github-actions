@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: staging
     - name: Get Time
       if: (github.ref == 'refs/heads/staging')
       run:
