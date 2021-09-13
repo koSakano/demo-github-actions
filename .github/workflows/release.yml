@@ -8,12 +8,11 @@ on:
 
 jobs:
   build:
+    if: (github.ref == 'refs/heads/staging')
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      with:
-        ref: staging
     - name: Get Time
       run:
         echo "OUTPUT=v$(date "+%Y%m%d%H%M%S")" >> $GITHUB_ENV
