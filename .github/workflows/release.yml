@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    -name: Test
+    - name: Test
       run:
         echo "${{ github.ref }}"
     - name: Get Time
