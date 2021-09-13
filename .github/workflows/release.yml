@@ -8,6 +8,7 @@ on:
 
 jobs:
   build:
+    if: (github.ref == 'refs/heads/staging')
     runs-on: ubuntu-20.04
     steps:
     - name: Checkout code
