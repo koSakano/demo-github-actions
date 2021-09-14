@@ -16,7 +16,7 @@ jobs:
       run:
         echo "OUTPUT=v$(date "+%Y%m%d%H%M%S")" >> $GITHUB_ENV
     - name: Create a Release
-      if: contains(github.event.pull_request.labels.*.name, 'Production Release')
+      if: contains(github.event.pull_request.labels.*.name, 'Production Release') && github.event.pull_request.merged == true
       id: create_release
       uses: actions/create-release@v1
       env:
