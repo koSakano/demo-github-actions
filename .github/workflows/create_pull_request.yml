@@ -20,4 +20,4 @@ jobs:
         if: github.ref == 'refs/heads/staging'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh pr list --label "Production Release" | grep "staging" || gh pr create --base master --title "Production Release $(date '+%Y-%m-%d' --date 'next monday')" --body "" --label "Production Release"
+        run: gh pr list --label "Production Release" | grep "staging" || gh pr create --base master --title "Production Release $(date '+%Y-%m-%d' --date 'next monday')" --body "" --label "Production Release" "Release note"
